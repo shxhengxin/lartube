@@ -6,3 +6,28 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+.btn-info{
+    color: #ffffff;
+}
+.channel-avatar {
+    height: 100px;
+    width: 100px;
+    border: 1px solid rgba(0,0,0,0.125);
+    position: relative;
+    cursor: pointer;
+    .channel-avatar-overlay{
+        display: none;
+    }
+    &:hover{
+        .channel-avatar-overlay{
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0,0,0,0.4);
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+}

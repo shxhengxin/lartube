@@ -13,4 +13,14 @@ trait UuidPrimaryKey
             $model->{$model->getKeyName()} = Uuid::uuid4()->toString();
         });
     }
+
+    public function getIncrementing()
+    {
+        return false;
+    }
+
+    public function getKeyType()
+    {
+        return 'string';
+    }
 }

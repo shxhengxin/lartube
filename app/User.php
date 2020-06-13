@@ -2,15 +2,18 @@
 
 namespace App;
 
+use App\Models\Channel;
 use App\Traits\UuidPrimaryKey;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     use Notifiable;
     use UuidPrimaryKey;
+    use HasMediaTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password'
     ];
 
     /**
@@ -38,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function channel()
+    {
+        return $this->hasOne(Channel::class,'user_id','id');
+    }
 }
